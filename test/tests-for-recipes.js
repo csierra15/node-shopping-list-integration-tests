@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const router = require('../recipesRouter');
+const {app, runServer, closeServer} = require('../server');
 
 const should = chai.should();
 
@@ -28,7 +28,7 @@ describe('Recipes', function() {
 });
 
 it('should add a recipe on POST', function(){
-    const newRecipe = {name: 'cookies', ingredients: 'butter, sugar, eggs, flour'};
+    const newRecipe = {name: 'cookies', ingredients: ['butter', 'sugar', 'eggs', 'flour']};
     return chai.request(app)
         .post('/recipes')
         .send(newRecipe)
@@ -38,22 +38,22 @@ it('should add a recipe on POST', function(){
             res.body.should.be.a('object');
             res.body.should.include.keys('id', 'name', 'ingredients');
             res.body.id.should.not.be.null;
-            res.body.should.be.deep.equal(Object.assign(newItem, {id: res.body.id}));
+            res.body.should.be.deep.equal(Object.assign(newRecipe, {id: res.body.id}));
         });
 
 });
 
-it('should update recipes on PUT', function(){
+it('should update recipes on PUT', function() {
     const updateData = {
         name: 'foo',
-        checked: true
+        ingredients: ['bizz', 'bang']
     };
     return chai.request(app)
-        .get('.recipes')
+        .get('/recipes')
         .then(function(res) {
             updateData.id = res.body[0].id;
             return chai.request(app)
-                .put('/recipes/${updateData.id}')
+                .put(`/recipes/${updateData.id}`)
                 .send(updateData)
         })
         .then(function(res) {
@@ -66,7 +66,7 @@ it('should delete recipes on DELETE', function() {
     .get('/recipes')
     .then(function(res) {
         return chai.request(app)
-            .delete('/recipes/${res.body[0].id}');
+            .delete(`/recipes/${res.body[0].id}`);
     })
     .then(function(res) {
         res.should.have.status(204);
