@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: zYP+jW/ijLe8jP3cs/JnqVMBVt5gGRzQRUz8dr5RmprM9NtFU6qCFViUreTQ3YFYWxVN8am3YUWuDklsBSxrhKH/cYndNvDsn4Ox2rzd7wck/Wcr/ilO5DP2wFEUZ7C4Lz515A3Edyo1KWWrtdvW2kWj3LBRzhqgtiOM2iVn8NmQF4mHTkPK6HgUD4YIJTF0SQ5UvHzw1uNRxpa4evbzoikVc+JeT4gpW2yc5CF4npjpJvnJ+QUBAtZPJJcsMLDBrhjdYL/L7lH84laM4nlCLuasoftAu7+WH8rrENTwYg/1tieS/1+qA9Lgk+RD74PmxhyuDbqhS3EIEX95GLjAjfRjov6vfMW8xNnrxTYPePD3MSJ5qRfMADpL05esu1aukjw0hUbCHt0m63EigS3hKJMtK87EUx92MKvwYx+Jy0GEDAPNc3g00/9tCjVjLJ8V7LsxHwUg0s0Qp+0IH/RuvBKpEvQS4Ykustjhg4gsR0KcZPQJTNVLDqQi6Eo8by07hr2hNDAvrpeNGARCgMkoJkjk7hoK7eyVkxOTPllNa57q02EBDB/6JrImsvD9ruwD5yglS49v5zuECRldJZZBJDmnXIWas7T/xaIWDyimGI0bGMPdkHTZygRjOmjX/3d7O6UyeRRVSNDOWFfx7s2eOSuBHPy6cawtiCroqSKrNUg=
+  app: thawing-wave-11235
+  on:
+    repo: csierra15/node-shopping-list-integration-tests
